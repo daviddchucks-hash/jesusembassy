@@ -16,27 +16,50 @@
 /* ---------- Nav collapse (≤900px) ---------- */
 @media (max-width: 900px) {
   .main-nav {
-    position: fixed;
-    inset: 84px 0 0 0;
-    background: var(--color-white);
+    position: absolute;
+    top: calc(100% + 0.65rem);
+    left: 1rem;
+    right: 1rem;
+    display: flex;
     flex-direction: column;
     align-items: stretch;
-    padding: var(--space-3) 1.75rem var(--space-5);
-    transform: translateY(-8px);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity var(--transition), transform var(--transition);
-    overflow-y: auto;
     gap: 0;
+    max-height: calc(100dvh - 6rem);
+    padding: 0.7rem 1rem 1rem;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: 0 14px 34px rgba(28,27,26,0.16);
+    transform: translateY(-8px) scale(0.98);
+    transform-origin: top center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+    overflow-y: auto;
   }
-  .main-nav.open { opacity: 1; transform: translateY(0); pointer-events: auto; }
-  .main-nav ul { flex-direction: column; gap: 0; }
+  .main-nav.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+  .main-nav ul { width: 100%; flex-direction: column; gap: 0; }
   .main-nav ul li { border-bottom: 1px solid var(--color-border); }
-  .main-nav ul li a { display: block; padding: 1.1rem 0; font-size: 1.05rem; }
-  .main-nav .header-actions-mobile { display: block; margin-top: 1.5rem; }
+  .main-nav ul li a { display: block; padding: 0.85rem 0.25rem; font-size: 1.02rem; }
+  .main-nav .header-actions-mobile {
+    display: block;
+    margin-top: 0.85rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--color-border);
+  }
+  .main-nav .header-actions-mobile .watch-live-btn {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+  }
   .nav-toggle { display: flex; }
   .site-header .header-actions > .watch-live-btn { display: none; }
-  .main-nav .watch-live-btn { display: inline-flex; }
 }
 
 /* ---------- Small tablet / large phone (≤768px) ---------- */
@@ -67,7 +90,7 @@
   .brand img { height: 38px; width: 38px; }
   .brand-text .brand-name { font-size: 1rem; }
   .main-nav { inset: 68px 0 0 0; }
-  .hero { min-height: 92vh; }
+  .hero { min-height: min(78svh, 680px); }
   .hero-content h1 { font-size: 2.2rem; }
   .hero-content .hero-lede { font-size: 1rem; }
   .page-banner { min-height: 34vh; }

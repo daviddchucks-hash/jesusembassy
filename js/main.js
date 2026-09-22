@@ -5,31 +5,44 @@
 (function () {
   "use strict";
 
-  /* Mobile navigation toggle */
+  /* Mobile dropdown navigation */
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.getElementById("main-nav");
 
+  function closeNav() {
+    if (!toggle || !nav) return;
+    nav.classList.remove("open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.setAttribute("aria-label", "Open navigation menu");
+  }
+
+  function openNav() {
+    if (!toggle || !nav) return;
+    nav.classList.add("open");
+    toggle.setAttribute("aria-expanded", "true");
+    toggle.setAttribute("aria-label", "Close navigation menu");
+  }
+
   if (toggle && nav) {
-    toggle.addEventListener("click", function () {
-      var isOpen = nav.classList.toggle("open");
-      toggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-      document.body.style.overflow = isOpen ? "hidden" : "";
+    toggle.addEventListener("click", function (event) {
+      event.stopPropagation();
+      nav.classList.contains("open") ? closeNav() : openNav();
     });
 
     nav.querySelectorAll("a").forEach(function (link) {
-      link.addEventListener("click", function () {
-        nav.classList.remove("open");
-        toggle.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      });
+      link.addEventListener("click", closeNav);
+    });
+
+    document.addEventListener("click", function (event) {
+      if (nav.classList.contains("open") && !nav.contains(event.target) && !toggle.contains(event.target)) closeNav();
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") closeNav();
     });
 
     window.addEventListener("resize", function () {
-      if (window.innerWidth > 900 && nav.classList.contains("open")) {
-        nav.classList.remove("open");
-        toggle.setAttribute("aria-expanded", "false");
-        document.body.style.overflow = "";
-      }
+      if (window.innerWidth > 900) closeNav();
     });
   }
 
@@ -38,9 +51,7 @@
     el.textContent = new Date().getFullYear();
   });
 
-  /* Generic "demo" form handling — replace with a real form
-     service (Formspree, Netlify Forms, Google Forms, custom
-     backend, etc.) before launch. See README.md. */
+  /* Generic demo form handling */
   document.querySelectorAll("form[data-demo-form]").forEach(function (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -54,7 +65,7 @@
     });
   });
 
-  /* Ministry / directory filter buttons (used on ministries.html) */
+  /* Ministry / directory filter buttons */
   var filterButtons = document.querySelectorAll("[data-filter-target] .filter-btn");
   if (filterButtons.length) {
     filterButtons.forEach(function (btn) {
