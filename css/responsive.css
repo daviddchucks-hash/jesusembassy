@@ -7,7 +7,7 @@
   .grid--4 { grid-template-columns: repeat(2, 1fr); }
   .grid--3 { grid-template-columns: repeat(2, 1fr); }
   .watch-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+  .gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: var(--space-4) var(--space-3); }
   .belief-list { grid-template-columns: 1fr; }
   .intro-layout { gap: var(--space-4); }
@@ -52,7 +52,7 @@
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .service-row { grid-template-columns: 1fr; gap: 0.35rem; }
   .service-row .service-meta { color: var(--color-accent-deep); }
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .sermon-row { grid-template-columns: 60px 1fr; }
   .sermon-links { grid-column: 1 / -1; }
   .form-grid { grid-template-columns: 1fr; }

@@ -35,12 +35,15 @@
     });
   });
 
-  /* Lazy loading (native, plus fade-in once loaded) */
+  /* Lazy loading with a gentle fade-in once each photo is ready */
   items.forEach(function (item) {
     var img = item.querySelector("img");
-    if (img) {
-      img.loading = "lazy";
-    }
+    if (!img) return;
+    img.loading = "lazy";
+    img.decoding = "async";
+    function markLoaded() { img.classList.add("is-loaded"); }
+    img.addEventListener("load", markLoaded, { once: true });
+    if (img.complete) markLoaded();
   });
 
   /* Lightbox */
@@ -57,8 +60,9 @@
     var item = visibleItems[currentIndex];
     if (!item) return;
     var img = item.querySelector("img");
-    lightboxImg.src = img.src;
+    lightboxImg.src = img.currentSrc || img.src;
     lightboxImg.alt = img.alt;
+    lightboxImg.decoding = "async";
     if (lightboxCaption) lightboxCaption.textContent = img.alt;
   }
 
