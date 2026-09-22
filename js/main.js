@@ -5,7 +5,7 @@
 (function () {
   "use strict";
 
-  /* Mobile dropdown navigation */
+  /* Mobile navigation toggle */
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.getElementById("main-nav");
 
