@@ -1,5 +1,10 @@
 # Jesus Embassy Kaduna — RCCG Website
 
+
+<ul>
+            <li>Jesus Embassy Kaduna Province 5 Headquarters, Redemption Road Gwari Avenue, Beside U.B.A Kakuri Kaduna</li>
+            <li>+234 701 613 1188</li>
+
 A clean, modern, static website for **Jesus Embassy Kaduna**, a parish of the
 **Redeemed Christian Church of God (RCCG)**. Built with plain HTML5, CSS3,
 and vanilla JavaScript — no build step, no framework — so it can be edited
